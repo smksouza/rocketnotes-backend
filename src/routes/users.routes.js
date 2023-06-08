@@ -1,18 +1,12 @@
-const { Router } =  require("express")
+const { Router } = require("express");
 
-const UsersController = require("../controllers/UsersController")
+const UsersController = require("../controllers/UsersController");
 
-const usersRouter = Router()
-
-
-function myMiddleware(request, response, next) {
-    console.log("Você passou pelo middleware")
-
-    next();
-}
+const usersRouter = Router();
 
 const usersController = new UsersController();
 
-usersRouter.post("/", myMiddleware, usersController.create)
+usersRouter.post("/", usersController.create);
+usersRouter.put("/:id", usersController.update);
 
-module.exports = usersRouter
+module.exports = usersRouter;
