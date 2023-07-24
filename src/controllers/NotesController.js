@@ -61,7 +61,7 @@ class NotesController {
     const { title, tags } = request.query;
 
     const user_id = request.user.id;
-    
+
     let notes;
 
     if (tags) {
@@ -73,6 +73,7 @@ class NotesController {
         .whereLike("notes.title", `%${title}%`)
         .whereIn("name", filterTags)
         .innerJoin("notes", "notes.id", "tags.note_id")
+        .groupBy("notes.id")
         .orderBy("notes.title");
     } else {
       notes = await knex("notes")
