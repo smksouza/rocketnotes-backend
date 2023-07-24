@@ -7,9 +7,9 @@ const notesController = new NotesController();
 
 notesRouter.use(ensureAuthenticated);
 
-notesRouter.get("/:user_id", notesController.index);
-notesRouter.get("/:id", notesController.show);
 notesRouter.post("/", notesController.create);
+notesRouter.get("/:id", notesController.show);
 notesRouter.delete("/:id", notesController.delete);
+notesRouter.get("/", notesController.index);
 
 module.exports = notesRouter;
